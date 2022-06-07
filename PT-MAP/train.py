@@ -14,12 +14,13 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from types import SimpleNamespace
 import wrn_mixup_model
-from io_utils import parse_args, get_resume_file ,get_assigned_file
 from dataset.dataAugment import *
 from dataset import HanNomDataset
+from utils import parse_args
 
-use_gpu = torch.cuda.is_available()
+
 def train_manifold_mixup(base_loader, base_loader_test, model, start_epoch, stop_epoch):
+    use_gpu = torch.cuda.is_available()
 
     def mixup_criterion(criterion, pred, y_a, y_b, lam):
         return lam * criterion(pred, y_a) + (1 - lam) * criterion(pred, y_b)
@@ -121,9 +122,6 @@ if __name__ == "__main__":
     parser.add_argument('--cfg_path', type=str,
                         default='experiment_configs/train_ptmap.yaml',
                         help="Config path")
-    parser.add_argument('--epochs', type=int, 
-                        default=-1,
-                        help='Number of epochs')
     args = parser.parse_args()
     cfg = parse_args(args.cfg_path)
     cfg.device = 'cuda' if torch.cuda.is_available() else 'cpu'
