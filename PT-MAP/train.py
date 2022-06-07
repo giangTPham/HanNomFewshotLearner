@@ -127,5 +127,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     cfg = parse_args(args.cfg_path)
     cfg.device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    cfg.train.epochs = cfg.train.epochs if args.epochs <= 0 else args.epochs
     main(cfg)
