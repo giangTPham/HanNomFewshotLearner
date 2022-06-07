@@ -1,4 +1,4 @@
-from dataset import TripletDataset
+from dataset import HanNomDataset
 from dataset.dataAugment import *
 from utils import *
 import numpy as np
@@ -14,7 +14,7 @@ class Clustering:
         self.transform = test_transforms(cfg)
         self.model = model
         self.model.to(cfg.device)
-        self.representers = TripletDataset(cfg, transform=self.transform, one_font_only=True)
+        self.representers = HanNomDataset(cfg, transform=self.transform, one_font_only=True)
         self.embedding = get_embedding(cfg, self.model, self.representers, model_name, 'sample_dataset')[0]
         assert len(self.embedding.shape) == 2
         self.input_size = cfg.data.input_shape

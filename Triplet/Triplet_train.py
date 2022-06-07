@@ -6,7 +6,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 from models import TripletModel
 from dataset.dataAugment import *
-from dataset import TripletDataset
+from dataset import HanNomDataset
 from pytorch_metric_learning import samplers
 from pytorch_metric_learning import distances, losses, miners, reducers
 from pytorch_metric_learning.utils.accuracy_calculator import AccuracyCalculator
@@ -42,17 +42,17 @@ def main(cfg: SimpleNamespace) -> None:
                                                       'mean_average_precision_at_r', 'r_precision'), k=None)
 
     
-    train_dataset = TripletDataset(cfg)
+    train_dataset = HanNomDataset(cfg)
     # print("=====Debug Start=========")
     # print(train_dataset.label_list)
     # print(cfg.data.sample_per_cls)
     # print("=====Debug End=========")
     
     query_transform = test_transforms(cfg)
-    query_dataset = TripletDataset(cfg, transform=query_transform, one_font_only=True)
+    query_dataset = HanNomDataset(cfg, transform=query_transform, one_font_only=True)
     
     eval_transform = test_transforms(cfg)
-    eval_dataset = TripletDataset(cfg, transform=eval_transform, one_font_only=True)
+    eval_dataset = HanNomDataset(cfg, transform=eval_transform, one_font_only=True)
     
     train_sampler = samplers.MPerClassSampler(train_dataset.label_list, cfg.data.sample_per_cls, batch_size=None,
                                               length_before_new_iter=len(train_dataset.label_list))
