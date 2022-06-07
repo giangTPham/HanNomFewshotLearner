@@ -99,7 +99,7 @@ def main(cfg: SimpleNamespace) -> None:
 
     model = wrn_mixup_model.wrn28_10(num_classes=font_dataset.n_chars, loss_type = 'softmax')
 
-
+    model.to(cfg.device)
     train_dataloader = torch.utils.data.DataLoader(font_dataset,
                                                batch_size=cfg.train.batch_size,
                                                shuffle=True,
