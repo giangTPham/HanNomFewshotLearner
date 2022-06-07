@@ -10,7 +10,7 @@
       "sample_per_cls": 5
     },
     "train": {
-        "start_epoch": 0
+        "start_epoch": 0,
         "stop_epoch": 10,
         "batch_size": 50,
         "lr": 0.05,
