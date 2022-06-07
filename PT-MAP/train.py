@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--cfg_path', type=str,
-                        default='experiment_configs/train_triplet.yaml',
+                        default='experiment_configs/train_ptmap.yaml',
                         help="Config path")
     parser.add_argument('--epochs', type=int, 
                         default=-1,
