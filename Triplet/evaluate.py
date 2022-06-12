@@ -1,5 +1,7 @@
+import sys
+sys.path.append("..")
 from dataset import HanNomDataset
-from models import init_simsiam_model, init_triplet_model
+from models import init_triplet_model
 from dataset.dataAugment import *
 from utils import *
 import torch
@@ -73,14 +75,14 @@ if __name__ == '__main__':
     
     parser = argparse.ArgumentParser()
     parser.add_argument('--pipeline', type=str, 
-                        default='simsiam',
+                        default='triplet',
                         help='Name of the training process')
     parser.add_argument('--cfg_path', type=str, 
                         default='experiment_configs/train_simsiam.yaml',
                         help='Config path')
                         
     parser.add_argument('--model_path', type=str, 
-                        default='weights/simsiam/pretrained_final.pt',)
+                        default='weights/triplet/pretrained_final.pt',)
                         
     args = parser.parse_args()
     
@@ -89,9 +91,7 @@ if __name__ == '__main__':
     cfg.model.pretrained = False
     
     from models import *
-    if 'simsiam' in args.pipeline:
-        model = init_simsiam_model(cfg)
-    elif 'triplet' in args.pipeline:
+    if 'triplet' in args.pipeline:
         model = init_triplet_model(cfg)
     model.load_state_dict(torch.load(args.model_path, map_location='cpu'))
     print('Done loading weights')
