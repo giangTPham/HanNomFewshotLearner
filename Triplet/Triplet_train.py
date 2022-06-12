@@ -4,6 +4,9 @@ from types import SimpleNamespace
 import torch
 from torch.utils.tensorboard import SummaryWriter
 
+import sys
+sys.path.append("..")
+
 from models import TripletModel
 from dataset.dataAugment import *
 from dataset import HanNomDataset
@@ -107,7 +110,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--cfg_path', type=str,
-                        default='experiment_configs/train_triplet.yaml',
+                        default='../experiment_configs/train_triplet.yaml',
                         help="Config path")
     parser.add_argument('--epochs', type=int, 
                         default=-1,
