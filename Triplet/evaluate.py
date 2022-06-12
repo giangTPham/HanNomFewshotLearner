@@ -78,7 +78,7 @@ if __name__ == '__main__':
                         default='triplet',
                         help='Name of the training process')
     parser.add_argument('--cfg_path', type=str, 
-                        default='experiment_configs/train_simsiam.yaml',
+                        default='../experiment_configs/train_triplet.yaml',
                         help='Config path')
                         
     parser.add_argument('--model_path', type=str, 
