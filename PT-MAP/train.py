@@ -4,6 +4,9 @@ import argparse
 import csv
 import os
 
+import sys
+sys.path.append("..")
+
 import numpy as np
 import torch
 from torch.autograd import Variable
@@ -120,7 +123,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--cfg_path', type=str,
-                        default='experiment_configs/train_ptmap.yaml',
+                        default='../experiment_configs/train_ptmap.yaml',
                         help="Config path")
     args = parser.parse_args()
     cfg = parse_args(args.cfg_path)
